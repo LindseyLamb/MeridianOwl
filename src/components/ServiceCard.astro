@@ -1,0 +1,74 @@
+﻿---
+interface Props {
+  title: string;
+  description: string;
+  href?: string;
+}
+
+const {
+  title,
+  description,
+  href = "/services",
+} = Astro.props;
+---
+
+<article class="service-card">
+  <h3>{title}</h3>
+
+  <p>{description}</p>
+
+  <a href={href}>
+    Learn more
+    <span aria-hidden="true">→</span>
+  </a>
+</article>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 19rem;
+    padding: var(--space-6);
+
+    border: var(--border-subtle);
+    border-top: 3px solid var(--color-gold-600);
+    border-radius: var(--radius-medium);
+
+    background: var(--color-white);
+    box-shadow: 0 0.75rem 2rem rgb(8 26 47 / 6%);
+
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  h3 {
+    margin-bottom: var(--space-4);
+  }
+
+  p {
+    flex-grow: 1;
+  }
+
+  a {
+    display: inline-flex;
+    gap: var(--space-2);
+    align-items: center;
+
+    color: var(--color-gold-600);
+
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+</style>

@@ -1,0 +1,158 @@
+﻿---
+const currentPath = Astro.url.pathname;
+
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "The Observatory", href: "/observatory" },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Meridian Owl home">
+      <span class="brand-mark" aria-hidden="true">MO</span>
+
+      <span class="brand-text">
+        <strong>Meridian Owl</strong>
+        <span>Advisory</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="navigation">
+        {
+          navigation.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={
+                  currentPath === item.href
+                    ? "page"
+                    : undefined
+                }
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a class="button header-button" href="/contact">
+      Contact
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+
+    border-bottom: var(--border-subtle);
+
+    background: rgb(251 248 241 / 92%);
+    backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    display: flex;
+    gap: var(--space-6);
+    align-items: center;
+
+    min-height: 5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    gap: var(--space-3);
+    align-items: center;
+
+    margin-right: auto;
+
+    text-decoration: none;
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+
+    width: 2.75rem;
+    aspect-ratio: 1;
+
+    border: 1px solid var(--color-gold-600);
+    border-radius: 50%;
+
+    color: var(--color-gold-600);
+
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  .brand-text {
+    display: grid;
+
+    line-height: 1.05;
+  }
+
+  .brand-text strong {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+  }
+
+  .brand-text span {
+    margin-top: 0.15rem;
+
+    color: var(--color-slate-500);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .navigation {
+    display: flex;
+    gap: var(--space-5);
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .navigation a {
+    padding-block: var(--space-2);
+
+    font-size: 0.92rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .navigation a:hover,
+  .navigation a[aria-current="page"] {
+    color: var(--color-gold-600);
+  }
+
+  .header-button {
+    min-height: 2.6rem;
+    padding: 0.55rem 1rem;
+  }
+
+  @media (max-width: 52rem) {
+    .navigation {
+      display: none;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .brand-text span,
+    .header-button {
+      display: none;
+    }
+  }
+</style>

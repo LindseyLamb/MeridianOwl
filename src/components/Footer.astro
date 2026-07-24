@@ -1,0 +1,129 @@
+﻿---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="footer-brand" href="/">
+        Meridian Owl Advisory
+      </a>
+
+      <p class="footer-description">
+        Governance, risk, cybersecurity, privacy,
+        and responsible technology advisory.
+      </p>
+    </div>
+
+    <div>
+      <h2>Explore</h2>
+
+      <ul>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href="/observatory">The Observatory</a>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Connect</h2>
+
+      <ul>
+        <li>
+          <a href="https://www.linkedin.com/">
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="mailto:hello@meridianowl.com">
+            hello@meridianowl.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container legal">
+    <p>
+      © {currentYear} Meridian Owl Advisory.
+      All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-top: var(--space-8);
+
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-7);
+  }
+
+  .footer-brand {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    text-decoration: none;
+  }
+
+  .footer-description {
+    max-width: 30rem;
+    margin-top: var(--space-4);
+
+    color: rgb(255 255 255 / 70%);
+  }
+
+  h2 {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-2);
+
+    margin: var(--space-4) 0 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  li a {
+    color: rgb(255 255 255 / 75%);
+    text-decoration: none;
+  }
+
+  li a:hover {
+    color: var(--color-gold-300);
+  }
+
+  .legal {
+    margin-top: var(--space-8);
+    padding-block: var(--space-5);
+
+    border-top: 1px solid rgb(255 255 255 / 14%);
+  }
+
+  .legal p {
+    margin: 0;
+
+    color: rgb(255 255 255 / 60%);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 44rem) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

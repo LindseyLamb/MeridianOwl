@@ -1,0 +1,35 @@
+﻿:root {
+    /* Brand colors */
+    --color-navy-950: #081a2f;
+    --color-navy-900: #102945;
+    --color-navy-700: #274968;
+    --color-gold-600: #9c762f;
+    --color-gold-500: #b68c3f;
+    --color-gold-300: #d4b878;
+    --color-cream-100: #f4efe4;
+    --color-cream-50: #fbf8f1;
+    --color-slate-700: #414b55;
+    --color-slate-500: #68737e;
+    --color-white: #ffffff;
+    /* Typography */
+    --font-heading: Georgia, "Times New Roman", serif;
+    --font-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    /* Layout */
+    --content-width: 72rem;
+    --reading-width: 46rem;
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --space-9: 6rem;
+    /* Borders and shadows */
+    --radius-small: 0.35rem;
+    --radius-medium: 0.75rem;
+    --border-subtle: 1px solid rgb(8 26 47 / 12%);
+    --shadow-soft: 0 1rem 3rem rgb(8 26 47 / 10%);
+}
