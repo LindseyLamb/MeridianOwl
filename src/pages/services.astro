@@ -1,0 +1,402 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const services = [
+  {
+    number: "01",
+    title: "Governance and GRC",
+    summary:
+      "Build governance structures, risk processes, policies, and controls that support both compliance obligations and business priorities.",
+    offerings: [
+      "GRC program design and maturity assessments",
+      "Enterprise and cybersecurity risk assessments",
+      "Policy and standards development",
+      "Control framework mapping",
+      "Risk register design and facilitation",
+      "Governance operating models",
+    ],
+  },
+  {
+    number: "02",
+    title: "Cybersecurity Advisory",
+    summary:
+      "Translate technical risk into practical priorities, defensible decisions, and roadmaps leadership can understand and support.",
+    offerings: [
+      "Cybersecurity program assessments",
+      "Security strategy and roadmaps",
+      "Executive and board risk reporting",
+      "Third-party risk management",
+      "Security control gap assessments",
+      "Virtual security leadership",
+    ],
+  },
+  {
+    number: "03",
+    title: "Privacy and AI Governance",
+    summary:
+      "Develop responsible approaches to data, privacy, and emerging technology that reflect real operational needs.",
+    offerings: [
+      "Privacy program development",
+      "Data governance assessments",
+      "AI governance frameworks",
+      "Responsible technology reviews",
+      "Privacy risk assessments",
+      "Policy and accountability structures",
+    ],
+  },
+  {
+    number: "04",
+    title: "Audit and Compliance Readiness",
+    summary:
+      "Prepare for assessments without turning compliance into a last-minute documentation exercise.",
+    offerings: [
+      "NIST framework alignment",
+      "ISO 27001 readiness",
+      "SOC 2 readiness",
+      "HIPAA security assessments",
+      "Evidence and documentation preparation",
+      "Remediation planning",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Services | Meridian Owl Advisory"
+  description="Governance, cybersecurity, privacy, AI governance, risk management, and compliance advisory services."
+>
+  <section class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <p class="eyebrow">Services</p>
+
+        <h1>
+          Clear direction for
+          <span>complex risk.</span>
+        </h1>
+      </div>
+
+      <div class="hero-copy">
+        <p>
+          Meridian Owl helps organizations understand where
+          risk lives, determine what matters most, and build
+          programs that are practical enough to sustain.
+        </p>
+
+        <a class="button" href="/contact">
+          Discuss your needs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-list">
+    <div class="container">
+      {
+        services.map((service) => (
+          <article class="service">
+            <div class="service-number">
+              {service.number}
+            </div>
+
+            <div class="service-introduction">
+              <h2>{service.title}</h2>
+              <p>{service.summary}</p>
+            </div>
+
+            <div class="service-offerings">
+              <h3>Typical engagements</h3>
+
+              <ul>
+                {service.offerings.map((offering) => (
+                  <li>{offering}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="engagement-section">
+    <div class="container engagement-grid">
+      <div>
+        <p class="eyebrow">How engagements work</p>
+
+        <h2>
+          Start with the decision,
+          not the deliverable.
+        </h2>
+      </div>
+
+      <div class="engagement-steps">
+        <article>
+          <span>01</span>
+
+          <div>
+            <h3>Understand the landscape</h3>
+            <p>
+              Clarify the organization, its constraints,
+              current environment, and the decision that
+              needs to be made.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <span>02</span>
+
+          <div>
+            <h3>Identify what matters</h3>
+            <p>
+              Separate meaningful risk from noise and focus
+              attention on the issues that affect outcomes.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <span>03</span>
+
+          <div>
+            <h3>Chart the route</h3>
+            <p>
+              Create practical priorities, ownership, and
+              next steps that fit the organization.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-grid">
+      <div>
+        <p class="eyebrow">Not sure where to start?</p>
+
+        <h2>
+          Begin with the problem you are trying to solve.
+        </h2>
+      </div>
+
+      <div>
+        <p>
+          You do not need to arrive with a perfectly defined
+          scope. A first conversation can help clarify the
+          challenge and determine the most useful next step.
+        </p>
+
+        <a class="button" href="/contact">
+          Start a conversation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-9);
+
+    background:
+      radial-gradient(
+        circle at 85% 30%,
+        rgb(182 140 63 / 18%),
+        transparent 28rem
+      ),
+      var(--color-cream-50);
+  }
+
+  .page-hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-8);
+    align-items: end;
+  }
+
+  h1 {
+    max-width: 54rem;
+    margin-bottom: 0;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--color-gold-600);
+  }
+
+  .hero-copy {
+    max-width: 31rem;
+  }
+
+  .hero-copy p {
+    font-size: 1.15rem;
+  }
+
+  .hero-copy .button {
+    margin-top: var(--space-4);
+  }
+
+  .services-list {
+    background: var(--color-white);
+  }
+
+  .service {
+    display: grid;
+    grid-template-columns: 0.25fr 0.85fr 0.9fr;
+    gap: var(--space-7);
+
+    padding-block: var(--space-8);
+
+    border-bottom: var(--border-subtle);
+  }
+
+  .service-number {
+    color: var(--color-gold-600);
+
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+  }
+
+  .service-introduction h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .service-introduction p {
+    max-width: 34rem;
+    font-size: 1.05rem;
+  }
+
+  .service-offerings h3 {
+    margin-bottom: var(--space-4);
+
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .service-offerings ul {
+    display: grid;
+    gap: var(--space-3);
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .service-offerings li {
+    position: relative;
+    padding-left: 1.25rem;
+
+    color: var(--color-slate-700);
+  }
+
+  .service-offerings li::before {
+    position: absolute;
+    top: 0.7rem;
+    left: 0;
+
+    width: 0.4rem;
+    height: 0.4rem;
+
+    border-radius: 50%;
+
+    background: var(--color-gold-600);
+
+    content: "";
+  }
+
+  .engagement-section {
+    padding-block: var(--space-9);
+
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .engagement-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--space-9);
+  }
+
+  .engagement-grid h2 {
+    color: var(--color-white);
+  }
+
+  .engagement-steps {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .engagement-steps article {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-5);
+
+    padding-bottom: var(--space-6);
+
+    border-bottom: 1px solid rgb(255 255 255 / 14%);
+  }
+
+  .engagement-steps article > span {
+    color: var(--color-gold-300);
+
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+  }
+
+  .engagement-steps h3 {
+    color: var(--color-white);
+  }
+
+  .engagement-steps p {
+    margin-bottom: 0;
+    color: rgb(255 255 255 / 70%);
+  }
+
+  .cta-section {
+    padding-block: var(--space-8);
+
+    background: var(--color-gold-300);
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .cta-grid h2 {
+    margin-bottom: 0;
+  }
+
+  .cta-grid .eyebrow,
+  .cta-grid p {
+    color: var(--color-navy-950);
+  }
+
+  .cta-grid .button {
+    margin-top: var(--space-4);
+  }
+
+  @media (max-width: 54rem) {
+    .page-hero-grid,
+    .service,
+    .engagement-grid,
+    .cta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service {
+      gap: var(--space-4);
+    }
+
+    .service-number {
+      margin-bottom: calc(-1 * var(--space-2));
+    }
+  }
+</style>
