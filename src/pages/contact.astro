@@ -1,0 +1,409 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact | Meridian Owl Advisory"
+  description="Contact Meridian Owl Advisory to discuss governance, cybersecurity, privacy, compliance, and responsible technology needs."
+>
+  <section class="page-hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Contact</p>
+
+        <h1>
+          Bring the complicated problem.
+          <span>We’ll find the next step.</span>
+        </h1>
+      </div>
+
+      <div class="hero-copy">
+        <p>
+          Share a little about what you are navigating.
+          A first conversation can help clarify the issue,
+          identify priorities, and determine whether
+          Meridian Owl is the right fit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container contact-grid">
+      <div class="contact-intro">
+        <p class="eyebrow">Start a conversation</p>
+
+        <h2>
+          Tell me what you are working through.
+        </h2>
+
+        <p>
+          You do not need a fully developed scope. A brief
+          description of the challenge, organization, and
+          desired outcome is enough to begin.
+        </p>
+
+        <div class="contact-details">
+          <div>
+            <span>Email</span>
+            <a href="mailto:hello@meridianowl.com">
+              hello@meridianowl.com
+            </a>
+          </div>
+
+          <div>
+            <span>Response time</span>
+            <p>Usually within two business days</p>
+          </div>
+        </div>
+      </div>
+
+      <form
+        class="contact-form"
+        method="POST"
+        action="https://formspree.io/f/mdaqbywy"
+      >
+        <div class="field-group">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="field-group">
+          <label for="organization">Organization</label>
+          <input
+            id="organization"
+            name="organization"
+            type="text"
+            autocomplete="organization"
+          />
+        </div>
+
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <div class="field-group">
+          <label for="topic">What would you like help with?</label>
+          <select id="topic" name="topic" required>
+            <option value="">Select an area</option>
+            <option value="grc">Governance and GRC</option>
+            <option value="cybersecurity">
+              Cybersecurity advisory
+            </option>
+            <option value="privacy-ai">
+              Privacy or AI governance
+            </option>
+            <option value="compliance">
+              Audit or compliance readiness
+            </option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="message">Tell me about the challenge</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="7"
+            required
+          ></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="timeframe">Desired timeframe</label>
+          <input
+            id="timeframe"
+            name="timeframe"
+            type="text"
+            placeholder="For example: next month"
+          />
+        </div>
+
+        <input
+          type="text"
+          name="_gotcha"
+          class="honeypot"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+        />
+
+        <button class="button" type="submit">
+          Send inquiry
+        </button>
+
+        <p class="form-note">
+          Please do not include passwords, credentials,
+          regulated data, or other sensitive information.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <section class="expectations-section">
+    <div class="container expectations-grid">
+      <div>
+        <p class="eyebrow">What happens next</p>
+
+        <h2>
+          A straightforward first step.
+        </h2>
+      </div>
+
+      <div class="steps">
+        <article>
+          <span>01</span>
+          <div>
+            <h3>Review</h3>
+            <p>
+              I’ll review your inquiry and determine whether
+              the challenge aligns with Meridian Owl’s areas
+              of practice.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <span>02</span>
+          <div>
+            <h3>Conversation</h3>
+            <p>
+              We’ll schedule a brief introductory call to
+              clarify the situation, priorities, and
+              constraints.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <span>03</span>
+          <div>
+            <h3>Next step</h3>
+            <p>
+              If there is a fit, I’ll recommend a practical
+              engagement structure or another useful path.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-9);
+
+    background:
+      radial-gradient(
+        circle at 84% 32%,
+        rgb(182 140 63 / 18%),
+        transparent 28rem
+      ),
+      var(--color-cream-50);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-8);
+    align-items: end;
+  }
+
+  h1 {
+    max-width: 58rem;
+    margin-bottom: 0;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--color-gold-600);
+  }
+
+  .hero-copy {
+    max-width: 32rem;
+  }
+
+  .hero-copy p {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+  }
+
+  .contact-section {
+    padding-block: var(--space-9);
+    background: var(--color-white);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--space-9);
+    align-items: start;
+  }
+
+  .contact-intro {
+    max-width: 34rem;
+  }
+
+  .contact-details {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+  }
+
+  .contact-details div {
+    padding-top: var(--space-4);
+    border-top: var(--border-subtle);
+  }
+
+  .contact-details span {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--color-gold-600);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .contact-details a {
+    font-weight: 700;
+    text-underline-offset: 0.25rem;
+  }
+
+  .contact-details p {
+    margin-bottom: 0;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--space-5);
+
+    padding: var(--space-7);
+
+    border: var(--border-subtle);
+    border-radius: var(--radius-medium);
+
+    background: var(--color-cream-50);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .field-group {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  label {
+    color: var(--color-navy-950);
+    font-weight: 750;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+
+    border: 1px solid rgb(8 26 47 / 24%);
+    border-radius: var(--radius-small);
+
+    background: var(--color-white);
+    color: var(--color-navy-950);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--color-gold-600);
+    outline: 3px solid rgb(182 140 63 / 18%);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .contact-form .button {
+    width: fit-content;
+  }
+
+  .form-note {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .expectations-section {
+    padding-block: var(--space-9);
+
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .expectations-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--space-9);
+  }
+
+  .expectations-section h2,
+  .expectations-section h3 {
+    color: var(--color-white);
+  }
+
+  .steps {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .steps article {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-5);
+
+    padding-bottom: var(--space-6);
+
+    border-bottom: 1px solid rgb(255 255 255 / 14%);
+  }
+
+  .steps article > span {
+    color: var(--color-gold-300);
+
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+  }
+
+  .steps p {
+    margin-bottom: 0;
+    color: rgb(255 255 255 / 70%);
+  }
+
+  @media (max-width: 54rem) {
+    .hero-grid,
+    .contact-grid,
+    .expectations-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+      padding: var(--space-5);
+    }
+  }
+</style>
