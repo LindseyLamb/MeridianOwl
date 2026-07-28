@@ -1,0 +1,451 @@
+﻿---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const articles = (
+  await getCollection(
+    "observatory",
+    ({ data }) => !data.draft
+  )
+).sort(
+  (a, b) =>
+    b.data.publishedDate.valueOf() -
+    a.data.publishedDate.valueOf()
+);
+
+const featuredArticle =
+  articles.find((article) => article.data.featured) ??
+  articles[0];
+
+const remainingArticles = featuredArticle
+  ? articles.filter(
+      (article) => article.id !== featuredArticle.id
+    )
+  : [];
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
+---
+
+<BaseLayout
+  title="The Observatory | Meridian Owl Advisory"
+  description="Ideas and practical guidance on governance, cybersecurity, privacy, compliance, AI governance, and organizational risk."
+>
+  <section class="page-hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">The Observatory</p>
+
+        <h1>
+          Ideas for seeing
+          <span>the whole landscape.</span>
+        </h1>
+      </div>
+
+      <div class="hero-copy">
+        <p>
+          Field notes, analysis, and practical guidance
+          about governance, cybersecurity, privacy,
+          compliance, AI, and complex organizational risk.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {
+    featuredArticle && (
+      <section class="featured-section">
+        <div class="container">
+          <a
+            class="featured-article"
+            href={`/observatory/${featuredArticle.id}`}
+          >
+            <div class="featured-mark" aria-hidden="true">
+              <span>MO</span>
+            </div>
+
+            <div class="featured-content">
+              <div class="article-meta">
+                <span>Featured</span>
+                <span aria-hidden="true">·</span>
+                <span>{featuredArticle.data.category}</span>
+                <span aria-hidden="true">·</span>
+                <time
+                  datetime={featuredArticle.data.publishedDate.toISOString()}
+                >
+                  {formatDate(
+                    featuredArticle.data.publishedDate
+                  )}
+                </time>
+              </div>
+
+              <h2>{featuredArticle.data.title}</h2>
+
+              <p>{featuredArticle.data.description}</p>
+
+              <span class="read-link">
+                Read the article
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="articles-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Latest observations</p>
+          <h2>Notes from the field</h2>
+        </div>
+
+        <p>
+          Perspectives designed to make difficult questions
+          clearer and practical decisions easier.
+        </p>
+      </div>
+
+      {
+        remainingArticles.length > 0 ? (
+          <div class="articles-grid">
+            {remainingArticles.map((article) => (
+              <article class="article-card">
+                <div class="article-card-meta">
+                  <span>{article.data.category}</span>
+
+                  <time
+                    datetime={article.data.publishedDate.toISOString()}
+                  >
+                    {formatDate(article.data.publishedDate)}
+                  </time>
+                </div>
+
+                <h3>
+                  <a href={`/observatory/${article.id}`}>
+                    {article.data.title}
+                  </a>
+                </h3>
+
+                <p>{article.data.description}</p>
+
+                <a
+                  class="article-link"
+                  href={`/observatory/${article.id}`}
+                >
+                  Read article
+                  <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <p>
+              More observations are being charted.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="topics-section">
+    <div class="container topics-grid">
+      <div>
+        <p class="eyebrow">Areas of inquiry</p>
+
+        <h2>
+          Questions worth examining.
+        </h2>
+      </div>
+
+      <div class="topics">
+        <span>Governance</span>
+        <span>Cybersecurity</span>
+        <span>Privacy</span>
+        <span>Compliance</span>
+        <span>AI governance</span>
+        <span>Healthcare technology</span>
+        <span>Digital risk</span>
+        <span>Responsible innovation</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-9);
+
+    background:
+      radial-gradient(
+        circle at 83% 32%,
+        rgb(182 140 63 / 18%),
+        transparent 28rem
+      ),
+      var(--color-cream-50);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-8);
+    align-items: end;
+  }
+
+  h1 {
+    max-width: 55rem;
+    margin-bottom: 0;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--color-gold-600);
+  }
+
+  .hero-copy {
+    max-width: 32rem;
+  }
+
+  .hero-copy p {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+  }
+
+  .featured-section {
+    padding-block: var(--space-8);
+    background: var(--color-white);
+  }
+
+  .featured-article {
+    display: grid;
+    grid-template-columns: 0.65fr 1.35fr;
+    min-height: 30rem;
+    overflow: hidden;
+
+    border: var(--border-subtle);
+    border-radius: var(--radius-medium);
+
+    background: var(--color-cream-50);
+    box-shadow: var(--shadow-soft);
+
+    text-decoration: none;
+  }
+
+  .featured-mark {
+    display: grid;
+    place-items: center;
+
+    background:
+      radial-gradient(
+        circle at center,
+        var(--color-navy-700),
+        var(--color-navy-950)
+      );
+  }
+
+  .featured-mark span {
+    display: grid;
+    place-items: center;
+
+    width: 11rem;
+    aspect-ratio: 1;
+
+    border: 1px solid var(--color-gold-300);
+    border-radius: 50%;
+
+    color: var(--color-gold-300);
+
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+  }
+
+  .featured-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: var(--space-8);
+  }
+
+  .article-meta,
+  .article-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+
+    color: var(--color-gold-600);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .featured-content h2 {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+
+    font-size: clamp(2.4rem, 5vw, 4rem);
+  }
+
+  .featured-content p {
+    max-width: 42rem;
+    font-size: 1.08rem;
+  }
+
+  .read-link,
+  .article-link {
+    display: inline-flex;
+    gap: var(--space-2);
+    align-items: center;
+
+    margin-top: var(--space-4);
+
+    color: var(--color-gold-600);
+    font-weight: 750;
+  }
+
+  .articles-section {
+    padding-block: var(--space-9);
+    background: var(--color-cream-50);
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-8);
+    align-items: end;
+  }
+
+  .section-heading h2 {
+    margin-bottom: 0;
+  }
+
+  .section-heading > p {
+    max-width: 31rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+
+    margin-top: var(--space-8);
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 23rem;
+    padding: var(--space-6);
+
+    border: var(--border-subtle);
+    border-top: 3px solid var(--color-gold-600);
+    border-radius: var(--radius-medium);
+
+    background: var(--color-white);
+  }
+
+  .article-card-meta {
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .article-card h3 {
+    margin-top: var(--space-5);
+  }
+
+  .article-card h3 a {
+    text-decoration: none;
+  }
+
+  .article-card h3 a:hover {
+    color: var(--color-gold-600);
+  }
+
+  .article-card p {
+    flex-grow: 1;
+  }
+
+  .article-link {
+    width: fit-content;
+    text-decoration: none;
+  }
+
+  .empty-state {
+    margin-top: var(--space-8);
+    padding: var(--space-7);
+
+    border: var(--border-subtle);
+
+    background: var(--color-white);
+  }
+
+  .empty-state p {
+    margin: 0;
+  }
+
+  .topics-section {
+    padding-block: var(--space-9);
+
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--space-9);
+    align-items: center;
+  }
+
+  .topics-section h2 {
+    color: var(--color-white);
+  }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .topics span {
+    padding: 0.7rem 1rem;
+
+    border: 1px solid rgb(255 255 255 / 22%);
+    border-radius: 999px;
+
+    color: rgb(255 255 255 / 78%);
+  }
+
+  @media (max-width: 54rem) {
+    .hero-grid,
+    .featured-article,
+    .section-heading,
+    .topics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-mark {
+      min-height: 18rem;
+    }
+
+    .featured-content {
+      padding: var(--space-6);
+    }
+  }
+</style>
